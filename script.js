@@ -49,24 +49,23 @@ function initBlowDetection() {
     analyser.fftSize = 256;
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    function detectBlow() {
-      analyser.getByteFrequencyData(dataArray);
-      let values = 0;
-      for (const val of dataArray) {
-        values += val;
-      }
-      const average = values / dataArray.length;
+function detectBlow() {
+  analyser.getByteFrequencyData(dataArray);
+  let values = 0;
+  for (const val of dataArray) {
+    values += val;
+  }
+  const average = values / dataArray.length;
 
-      if (average > 50) {
-        blowOutCandles();
-      }
+  console.log("Blow average level:", average);  // <--- Add this line
 
-      requestAnimationFrame(detectBlow);
-    }
+  if (average > 50) {
+    blowOutCandles();
+  }
 
-    detectBlow();
-  });
+  requestAnimationFrame(detectBlow);
 }
+
 
 function addCandle(x, y) {
   const cake = document.querySelector(".cake");
