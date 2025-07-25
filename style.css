@@ -6,7 +6,8 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
-  background: linear-gradient(to bottom, #ffe0eb, #ffffff); /* soft pink to white */
+  background: linear-gradient(to bottom, #0b3d0b, #145214); /* deep forest green gradient */
+  color: #ffffff; /* makes sure text stays readable */
 }
 
 .candle-count-display {
