@@ -66,3 +66,40 @@ window.onload = () => {
     initBlowDetection();
   }
 };
+
+function initBlowDetection() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+    const microphone = audioContext.createMediaStreamSource(stream);
+    const analyser = audioContext.createAnalyser();
+    microphone.connect(analyser);
+    analyser.fftSize = 256;
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    function detectBlow() {
+      analyser.getByteFrequencyData(dataArray);
+      let values = 0;
+      for (const val of dataArray) {
+        values += val;
+      }
+      const average = values / dataArray.length;
+
+      if (average > 50) {
+        blowOutCandles();
+      }
+
+      requestAnimationFrame(detectBlow);
+    }
+
+    detectBlow();
+  });
+}
+
+function blowOutCandles() {
+  const flames = document.querySelectorAll(".flame:not(.blown-out)");
+  flames.forEach((flame) => {
+    flame.classList.add("blown-out");
+    flame.style.opacity = 0;
+  });
+  updateCandleCount();
+}
