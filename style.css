@@ -28,10 +28,7 @@ body {
   position: relative;
   width: 250px;
   height: 200px;
-  top: 50%;
-  left: 50%;
-  margin-top: -70px;
-  margin-left: -125px;
+  margin: 100px auto; /* centers it horizontally and pushes it down */
 }
 
 .plate {
