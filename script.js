@@ -31,48 +31,6 @@ let candles = [
   { x: 200, y: 292 }
 ];
 
-function blowOutCandles() {
-  const flames = document.querySelectorAll(".flame:not(.blown-out)");
-  flames.forEach((flame) => {
-    flame.classList.add("blown-out");
-    flame.style.opacity = 0;
-  });
-  updateCandleCount();
-}
-
-navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
-  console.log("Mic permission granted ✅");
-}).catch(() => {
-  console.log("Mic permission denied ❌");
-});
-
-function initBlowDetection() {
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-    const microphone = audioContext.createMediaStreamSource(stream);
-    const analyser = audioContext.createAnalyser();
-    microphone.connect(analyser);
-    analyser.fftSize = 256;
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-function detectBlow() {
-  analyser.getByteFrequencyData(dataArray);
-  let values = 0;
-  for (const val of dataArray) {
-    values += val;
-  }
-  const average = values / dataArray.length;
-
-  console.log("Blow average level:", average);  // <--- Add this line
-
-  if (average > 50) {
-    blowOutCandles();
-  }
-
-  requestAnimationFrame(detectBlow);
-}
-
-
 function addCandle(x, y) {
   const cake = document.querySelector(".cake");
   const candle = document.createElement("div");
@@ -97,10 +55,47 @@ function updateCandleCount() {
   counter.textContent = flames.length;
 }
 
+function blowOutCandles() {
+  const flames = document.querySelectorAll(".flame:not(.blown-out)");
+  flames.forEach((flame) => {
+    flame.classList.add("blown-out");
+    flame.style.opacity = 0;
+  });
+  updateCandleCount();
+}
+
+function initBlowDetection() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+    const microphone = audioContext.createMediaStreamSource(stream);
+    const analyser = audioContext.createAnalyser();
+    microphone.connect(analyser);
+    analyser.fftSize = 256;
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    function detectBlow() {
+      analyser.getByteFrequencyData(dataArray);
+      let values = 0;
+      for (const val of dataArray) {
+        values += val;
+      }
+      const average = values / dataArray.length;
+
+      if (average > 50) {
+        blowOutCandles();
+      }
+
+      requestAnimationFrame(detectBlow);
+    }
+
+    detectBlow();
+  });
+}
+
 window.onload = () => {
   for (const candle of candles) {
     addCandle(candle.x, candle.y);
   }
   updateCandleCount();
-  initBlowDetection(); // Now this works because it's declared above
+  initBlowDetection();
 };
