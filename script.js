@@ -116,3 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("getUserMedia not supported on your browser!");
   }
 });
+
+window.onload = () => {
+  for (let i = 0; i < candles.length; i++) {
+    addCandle(candles[i].x, candles[i].y);
+  }
+};
