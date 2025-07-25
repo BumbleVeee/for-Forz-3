@@ -30,14 +30,18 @@
       <div class="drip drip2"></div>
       <div class="drip drip3"></div>
     </div>
-    <script src="script.js"></script>
-    <script>
-  document.getElementById("play-music-btn").addEventListener("click", function () {
-    const audio = document.getElementById("bg-music");
-    audio.volume = 0.2; // quiet background volume
+<script>
+  const audio = document.getElementById("bg-music");
+  audio.volume = 0.05;
+
+  function startMusicOnce() {
     audio.play();
-    this.style.display = "none"; // hide button after playing
-  });
+    document.getElementById("play-music-btn").style.display = "none";
+    document.removeEventListener("click", startMusicOnce);
+  }
+
+  // Start music on any user click
+  document.addEventListener("click", startMusicOnce);
 </script>
   </body>
 </html>
