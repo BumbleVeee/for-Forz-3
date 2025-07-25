@@ -31,41 +31,14 @@ let candles = [
   { x: 200, y: 292 }
 ];
 
-function addCandle(x, y) {
-  const cake = document.querySelector(".cake");
-  const candle = document.createElement("div");
-  candle.className = "candle";
-  candle.style.left = `${x}px`;
-  candle.style.top = `${y}px`;
-
-  const flame = document.createElement("div");
-  flame.className = "flame";
-
-  const wick = document.createElement("div");
-  wick.className = "wick";
-
-  candle.appendChild(flame);
-  candle.appendChild(wick);
-  cake.appendChild(candle);
-}
-
-function updateCandleCount() {
-  const counter = document.getElementById("candleCount");
+function blowOutCandles() {
   const flames = document.querySelectorAll(".flame:not(.blown-out)");
-  counter.textContent = flames.length;
-}
-
-window.onload = () => {
-  for (const candle of candles) {
-    addCandle(candle.x, candle.y);
-  }
+  flames.forEach((flame) => {
+    flame.classList.add("blown-out");
+    flame.style.opacity = 0;
+  });
   updateCandleCount();
-
-  // Re-enable microphone blowing detection if defined
-  if (typeof initBlowDetection === "function") {
-    initBlowDetection();
-  }
-};
+}
 
 function initBlowDetection() {
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -95,11 +68,34 @@ function initBlowDetection() {
   });
 }
 
-function blowOutCandles() {
-  const flames = document.querySelectorAll(".flame:not(.blown-out)");
-  flames.forEach((flame) => {
-    flame.classList.add("blown-out");
-    flame.style.opacity = 0;
-  });
-  updateCandleCount();
+function addCandle(x, y) {
+  const cake = document.querySelector(".cake");
+  const candle = document.createElement("div");
+  candle.className = "candle";
+  candle.style.left = `${x}px`;
+  candle.style.top = `${y}px`;
+
+  const flame = document.createElement("div");
+  flame.className = "flame";
+
+  const wick = document.createElement("div");
+  wick.className = "wick";
+
+  candle.appendChild(flame);
+  candle.appendChild(wick);
+  cake.appendChild(candle);
 }
+
+function updateCandleCount() {
+  const counter = document.getElementById("candleCount");
+  const flames = document.querySelectorAll(".flame:not(.blown-out)");
+  counter.textContent = flames.length;
+}
+
+window.onload = () => {
+  for (const candle of candles) {
+    addCandle(candle.x, candle.y);
+  }
+  updateCandleCount();
+  initBlowDetection(); // Now this works because it's declared above
+};
