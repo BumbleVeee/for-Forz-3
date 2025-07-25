@@ -32,11 +32,11 @@ let candles = [
 ];
 
 function addCandle(x, y) {
-  const cake = document.querySelector(".cake"); // <-- this is the fix!
+  const cake = document.querySelector(".cake");
   const candle = document.createElement("div");
   candle.className = "candle";
-  candle.style.left = x + "px";
-  candle.style.top = y + "px";
+  candle.style.left = `${x}px`;
+  candle.style.top = `${y}px`;
 
   const flame = document.createElement("div");
   flame.className = "flame";
@@ -55,19 +55,15 @@ function updateCandleCount() {
   counter.textContent = flames.length;
 }
 
-// 🔇 Disable manual click placement
-// document.querySelector(".cake").addEventListener("click", e => {
-//   const rect = e.target.getBoundingClientRect();
-//   const x = e.clientX - rect.left;
-//   const y = e.clientY - rect.top;
-//   addCandle(x, y);
-//   updateCandleCount();
-// });
-
-// ✅ Auto-place all candles and update count on load
+// 🔇 Remove click-to-place feature completely
 window.onload = () => {
-  for (let i = 0; i < candles.length; i++) {
-    addCandle(candles[i].x, candles[i].y);
+  for (const candle of candles) {
+    addCandle(candle.x, candle.y);
   }
   updateCandleCount();
+
+  // ✅ Activate microphone blowing
+  if (window.initBlowDetection) {
+    initBlowDetection();
+  }
 };
