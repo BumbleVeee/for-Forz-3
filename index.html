@@ -53,7 +53,7 @@
 <script>
   const audio = document.getElementById("bg-music");
   audio.volume = 0.03;
-  
+
   function startMusicOnce() {
     audio.play().catch(() => {
       console.log("Autoplay prevented, please click to start music.");
@@ -63,6 +63,5 @@
 
   document.addEventListener("click", startMusicOnce);
 </script>
-
 </body>
 </html>
