@@ -8,6 +8,11 @@ body {
   padding: 20px;
   background: linear-gradient(to bottom, #0b3d0b, #145214); /* deep forest green gradient */
   color: #ffffff; /* makes sure text stays readable */
+  
+  <audio autoplay loop volume="0.2">
+  <source src="your-music-file.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
 }
 
 .candle-count-display {
