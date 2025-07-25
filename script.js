@@ -99,3 +99,9 @@ window.onload = () => {
     addCandle(candle.x, candle.y);
   }
   updateCandleCount();
+
+    // ✅ Activate microphone blowing
+  if (window.initBlowDetection) {
+    initBlowDetection();
+  }
+};
