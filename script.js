@@ -35,8 +35,8 @@ function addCandle(x, y) {
   const cake = document.querySelector(".cake");
   const candle = document.createElement("div");
   candle.className = "candle";
-  candle.style.left = `${x}px`;
-  candle.style.top = `${y}px`;
+  candle.style.left = x + "px";
+  candle.style.top = y + "px";
 
   const flame = document.createElement("div");
   flame.className = "flame";
@@ -99,5 +99,3 @@ window.onload = () => {
     addCandle(candle.x, candle.y);
   }
   updateCandleCount();
-  initBlowDetection();
-};
