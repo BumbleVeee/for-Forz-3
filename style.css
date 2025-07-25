@@ -8,15 +8,8 @@ body {
   padding: 20px;
   background: linear-gradient(to bottom, #0b3d0b, #145214); /* deep forest green gradient */
   color: #ffffff; /* makes sure text stays readable */
-  
-  <audio autoplay loop volume="0.2">
-  <source src="AlinaBaraz-MyWholeLife.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
 }
-
-<button onclick="document.querySelector('audio').play()">▶️ Play Music</button>
-
+  
 .candle-count-display {
   text-align: center;
   margin-top: 150px;
