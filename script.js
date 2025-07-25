@@ -49,17 +49,15 @@ function addCandle(x, y) {
   cake.appendChild(candle);
 }
 
-// Draw candles when the page loads
-window.onload = () => {
-  for (let i = 0; i < candles.length; i++) {
-    addCandle(candles[i].x, candles[i].y);
-  }
-
-  updateCandleCount();
-};
-
 function updateCandleCount() {
   const counter = document.getElementById("candle-count");
   const flames = document.querySelectorAll(".flame:not(.blown-out)");
   counter.textContent = flames.length;
 }
+
+window.onload = () => {
+  for (let i = 0; i < candles.length; i++) {
+    addCandle(candles[i].x, candles[i].y);
+  }
+  updateCandleCount();
+};
