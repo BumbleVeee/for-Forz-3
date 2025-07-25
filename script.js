@@ -89,6 +89,8 @@ function initBlowDetection() {
     }
 
     detectBlow();
+  }).catch(() => {
+    console.warn("Mic permission denied or not available");
   });
 }
 
