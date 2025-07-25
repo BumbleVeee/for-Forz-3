@@ -1,5 +1,12 @@
 body {
-  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  background: #fffdf8; /* or whatever color fits your theme */
 }
 
 .candle-count-display {
