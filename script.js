@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
-  let candle = [
+  let candles = [
   { x: 194.5, y: 19.5 },
   { x: 197.5, y: 39.5 },
   { x: 205.5, y: 47.5 },
