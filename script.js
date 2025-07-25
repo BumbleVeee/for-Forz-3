@@ -55,15 +55,14 @@ function updateCandleCount() {
   counter.textContent = flames.length;
 }
 
-// 🔇 Remove click-to-place feature completely
 window.onload = () => {
   for (const candle of candles) {
     addCandle(candle.x, candle.y);
   }
   updateCandleCount();
 
-  // ✅ Activate microphone blowing
-  if (window.initBlowDetection) {
+  // Re-enable microphone blowing detection if defined
+  if (typeof initBlowDetection === "function") {
     initBlowDetection();
   }
 };
