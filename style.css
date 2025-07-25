@@ -25,7 +25,7 @@ body {
 }
 
 .cake {
-  position: absolute;
+  position: relative;
   width: 250px;
   height: 200px;
   top: 50%;
@@ -136,6 +136,8 @@ body {
 .candle:before {
   content: "";
   position: absolute;
+  transform: none !important;
+  margin: 0 !important;
   top: 0;
   left: 0;
   width: 12px;
