@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Test Candles & Music</title>
+<title>Birthday Cake Test</title>
 <style>
+  body {
+    background-color: #122a11; /* dark green background for the page */
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 40px;
+  }
   .cake {
     position: relative;
     width: 250px;
     height: 200px;
-    margin: 50px auto;
-    background: #244d23; /* dark green cake bg */
+    margin: 20px auto;
+    background: #244d23; /* dark green cake */
     border-radius: 20px;
   }
   .candle {
@@ -19,11 +26,11 @@
     background-color: #7B020B;
     border-radius: 6px / 3px;
     top: 30px;
-    left: 20px;
   }
-  .candle:nth-child(2) {
-    left: 60px;
-  }
+  /* Candle positions */
+  .candle:nth-child(1) { left: 20px; }
+  .candle:nth-child(2) { left: 60px; }
+  .candle:nth-child(3) { left: 100px; }
 </style>
 </head>
 <body>
@@ -33,10 +40,15 @@
   Your browser does not support the audio element.
 </audio>
 
+<h1>Happy Birthday!</h1>
+
 <div class="cake">
   <div class="candle"></div>
   <div class="candle"></div>
+  <div class="candle"></div>
 </div>
+
+<p>Click anywhere to start the music.</p>
 
 <script>
   const audio = document.getElementById("bg-music");
@@ -51,8 +63,6 @@
 
   document.addEventListener("click", startMusicOnce);
 </script>
-
-<p>Click anywhere on the page to start music.</p>
 
 </body>
 </html>
