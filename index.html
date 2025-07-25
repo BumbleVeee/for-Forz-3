@@ -12,13 +12,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
   </head>
   <body>
-<audio id="bg-music" loop>
-  <source src="happy-birthday.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+    <audio id="bg-music" loop>
+      <source src="happy-birthday.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
     <div class="candle-count-display">
       Candles on the Cake: <span id="candleCount">0</span>
     </div>
+
     <div class="cake">
       <div class="plate"></div>
       <div class="layer layer-bottom"></div>
@@ -28,18 +30,29 @@
       <div class="drip drip1"></div>
       <div class="drip drip2"></div>
       <div class="drip drip3"></div>
+
+      <!-- Add your candles here -->
+      <div class="candle" style="left: 28.5px; top: 21.5px;"></div>
+      <div class="candle" style="left: 45.7px; top: 22px;"></div>
+      <!-- more candles -->
     </div>
-<script>
-  const audio = document.getElementById("bg-music");
-  audio.volume = 0.03; // soft and lovely
 
-  function startMusicOnce() {
-    audio.play();
-    document.removeEventListener("click", startMusicOnce);
-  }
+    <script src="script.js"></script>
 
-  // Auto-start on any interaction (a click anywhere)
-  document.addEventListener("click", startMusicOnce);
-</script>
+    <script>
+      const audio = document.getElementById("bg-music");
+      audio.volume = 0.03; // soft and lovely
+
+      function startMusicOnce() {
+        audio.play();
+        document.removeEventListener("click", startMusicOnce);
+      }
+      document.addEventListener("click", startMusicOnce);
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const candleCount = document.querySelectorAll('.cake .candle').length;
+        document.getElementById('candleCount').textContent = candleCount;
+      });
+    </script>
   </body>
 </html>
