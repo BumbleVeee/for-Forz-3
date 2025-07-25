@@ -1,67 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Birthday Cake Test</title>
-<style>
-  body {
-    background-color: #122a11; /* dark green background for the page */
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-    padding-top: 40px;
-  }
-  .cake {
-    position: relative;
-    width: 250px;
-    height: 200px;
-    margin: 20px auto;
-    background: #244d23; /* dark green cake */
-    border-radius: 20px;
-  }
-  .candle {
-    position: absolute;
-    width: 12px;
-    height: 35px;
-    background-color: #7B020B;
-    border-radius: 6px / 3px;
-    top: 30px;
-  }
-  /* Candle positions */
-  .candle:nth-child(1) { left: 20px; }
-  .candle:nth-child(2) { left: 60px; }
-  .candle:nth-child(3) { left: 100px; }
-</style>
+  <meta charset="UTF-8" />
+  <title>Birthday Cake</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <audio id="bg-music" loop>
+    <source src="AlinaBaraz-MyWholeLife.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 
-<audio id="bg-music" loop>
-  <source src="AlinaBaraz-MyWholeLife.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
+  <h1>Happy Birthday!</h1>
 
-<h1>Happy Birthday!</h1>
+  <div class="candle-count-display">
+    Candles on the Cake: <span id="candleCount">0</span>
+  </div>
 
-<div class="cake">
-  <div class="candle"></div>
-  <div class="candle"></div>
-  <div class="candle"></div>
-</div>
+  <div class="cake">
+    <div class="plate"></div>
+    <div class="layer layer-bottom"></div>
+    <div class="layer layer-middle"></div>
+    <div class="layer layer-top"></div>
+    <div class="icing"></div>
+    <div class="drip drip1"></div>
+    <div class="drip drip2"></div>
+    <div class="drip drip3"></div>
+  </div>
 
-<p>Click anywhere to start the music.</p>
-
-<script>
-  const audio = document.getElementById("bg-music");
-  audio.volume = 0.03;
-
-  function startMusicOnce() {
-    audio.play().catch(() => {
-      console.log("Autoplay prevented, please click to start music.");
+  <script src="script.js"></script>
+  <script>
+    const audio = document.getElementById("bg-music");
+    audio.volume = 0.03;
+    document.addEventListener("click", function startMusic() {
+      audio.play().catch(() => {});
+      document.removeEventListener("click", startMusic);
     });
-    document.removeEventListener("click", startMusicOnce);
-  }
-
-  document.addEventListener("click", startMusicOnce);
-</script>
+  </script>
 </body>
 </html>
