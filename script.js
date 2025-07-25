@@ -32,7 +32,7 @@ let candles = [
 ];
 
 function addCandle(x, y) {
-  const cake = document.getElementById("cake");
+  const cake = document.querySelector(".cake");
   const candle = document.createElement("div");
   candle.className = "candle";
   candle.style.left = x + "px";
