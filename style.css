@@ -15,6 +15,8 @@ body {
 </audio>
 }
 
+<button onclick="document.querySelector('audio').play()">▶️ Play Music</button>
+
 .candle-count-display {
   text-align: center;
   margin-top: 150px;
