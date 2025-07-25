@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
-  background: #fffdf0; /* or whatever color fits your theme */
+  background: linear-gradient(to bottom, #ffe0eb, #ffffff); /* soft pink to white */
 }
 
 .candle-count-display {
