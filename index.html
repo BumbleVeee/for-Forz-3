@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Candle Blow</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Test Candles & Music</title>
 <style>
-  /* Minimal CSS for candles */
   .cake {
     position: relative;
     width: 250px;
     height: 200px;
     margin: 50px auto;
-    background: #f5deb3;
+    background: #244d23; /* dark green cake bg */
     border-radius: 20px;
   }
   .candle {
@@ -20,37 +18,41 @@
     height: 35px;
     background-color: #7B020B;
     border-radius: 6px / 3px;
-    top: 0;
-    left: 0;
-    z-index: 10;
+    top: 30px;
+    left: 20px;
+  }
+  .candle:nth-child(2) {
+    left: 60px;
   }
 </style>
 </head>
 <body>
-  <audio id="bg-music" loop>
-    <source src="happy-birthday.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
 
-  <div class="candle-count-display">
-    Candles on the Cake: <span id="candleCount">2</span>
-  </div>
+<audio id="bg-music" loop>
+  <source src="happy-birthday.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
 
-  <div class="cake">
-    <div class="candle" style="left: 20px; top: 30px;"></div>
-    <div class="candle" style="left: 60px; top: 25px;"></div>
-  </div>
+<div class="cake">
+  <div class="candle"></div>
+  <div class="candle"></div>
+</div>
 
-  <script>
-    const audio = document.getElementById("bg-music");
-    audio.volume = 0.03;
+<script>
+  const audio = document.getElementById("bg-music");
+  audio.volume = 0.03;
+  
+  function startMusicOnce() {
+    audio.play().catch(() => {
+      console.log("Autoplay prevented, please click to start music.");
+    });
+    document.removeEventListener("click", startMusicOnce);
+  }
 
-    function startMusicOnce() {
-      audio.play();
-      document.removeEventListener("click", startMusicOnce);
-    }
+  document.addEventListener("click", startMusicOnce);
+</script>
 
-    document.addEventListener("click", startMusicOnce);
-  </script>
+<p>Click anywhere on the page to start music.</p>
+
 </body>
 </html>
