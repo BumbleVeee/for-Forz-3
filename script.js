@@ -40,6 +40,12 @@ function blowOutCandles() {
   updateCandleCount();
 }
 
+navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
+  console.log("Mic permission granted ✅");
+}).catch(() => {
+  console.log("Mic permission denied ❌");
+});
+
 function initBlowDetection() {
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
